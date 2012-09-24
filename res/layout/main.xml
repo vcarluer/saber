@@ -10,19 +10,21 @@
         android:layout_height="match_parent" />
 
     <ImageView
-        android:id="@+id/btBack"
-        android:layout_width="42dip"
-        android:layout_height="42dip"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:src="@android:drawable/ic_menu_revert" android:contentDescription="@string/back"/>
-
-    <ImageView
         android:id="@+id/btSearch"
         android:layout_width="42dip"
         android:layout_height="42dip"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:src="@android:drawable/ic_menu_search" android:contentDescription="@string/search"/>
+        android:layout_alignParentLeft="true"
+        android:contentDescription="@string/search"
+        android:src="@android:drawable/ic_menu_search" />
+
+    <ImageView
+        android:id="@+id/btBack"
+        android:layout_width="42dip"
+        android:layout_height="42dip"
+        android:layout_above="@+id/btSearch"
+        android:layout_alignParentLeft="true"
+        android:contentDescription="@string/back"
+        android:src="@android:drawable/ic_menu_revert" />
 
 </RelativeLayout>

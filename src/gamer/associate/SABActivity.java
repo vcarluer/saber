@@ -49,6 +49,7 @@ public class SABActivity extends Activity {
         
         
         webview.getSettings().setJavaScriptEnabled(true);
+        webview.getSettings().setUseWideViewPort(true);
         webview.getSettings().setBuiltInZoomControls(true);
         
         final Activity activity = this;
