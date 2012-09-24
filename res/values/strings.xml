@@ -3,5 +3,7 @@
 
     <string name="hello">Hello World, SABActivity!</string>
     <string name="app_name">SAB</string>
+    <string name="back">Back</string>
+    <string name="search">Search</string>
 
 </resources>
