@@ -1,15 +1,18 @@
 package gamer.associate;
 
 import android.app.Activity;
+import android.opengl.Visibility;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.Window;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 public class SABActivity extends Activity {
@@ -27,37 +30,41 @@ public class SABActivity extends Activity {
         this.webview = (WebView) this.findViewById(R.id.webViewMain);
         
         ImageView btBack = (ImageView) this.findViewById(R.id.btBack);
-        btBack.setOnTouchListener(new OnTouchListener() {
+        
+        btBack.setOnClickListener(new OnClickListener() {
 			
-			public boolean onTouch(View v, MotionEvent event) {
-				if (webview.canGoBack()) {
-					webview.goBack();
-				}
-				
-				return true;
+			public void onClick(View v) {
+				goBack();
 			}
 		});
         
         ImageView btSearch = (ImageView) this.findViewById(R.id.btSearch);
-        btSearch.setOnTouchListener(new OnTouchListener() {
+        btSearch.setOnClickListener(new OnClickListener() {
 			
-			public boolean onTouch(View v, MotionEvent event) {
+			public void onClick(View v) {
 				webview.loadUrl(HOME_SEARCH);
-				return true;
 			}
 		});
-        
         
         webview.getSettings().setJavaScriptEnabled(true);
         webview.getSettings().setUseWideViewPort(true);
         webview.getSettings().setBuiltInZoomControls(true);
         
         final Activity activity = this;
+        final ProgressBar progressBar = (ProgressBar) this.findViewById(R.id.progressBar);
+        progressBar.setMax(100);
         webview.setWebChromeClient(new WebChromeClient() {
         	   public void onProgressChanged(WebView view, int progress) {
         	     // Activities and WebViews measure progress with different scales.
         	     // The progress meter will automatically disappear when we reach 100%
-        	     activity.setProgress(progress * 1000);
+        	     activity.setProgress(progress * 100);
+        	     progressBar.setProgress(progress);
+        	     if (progressBar.getProgress() == progressBar.getMax()) {
+        	    	 progressBar.setVisibility(View.INVISIBLE);
+        	    	 progressBar.setProgress(0);
+        	     } else {
+        	    	 progressBar.setVisibility(View.VISIBLE);
+        	     }
         	   }
         	 });
         
@@ -68,5 +75,15 @@ public class SABActivity extends Activity {
     	 });
 
     	 webview.loadUrl(HOME_SEARCH);
+    }
+	@Override
+	public void onBackPressed() {
+		goBack();
+	}
+    
+    private void goBack() {
+    	if (webview.canGoBack()) {
+			webview.goBack();
+		}
     }
 }
