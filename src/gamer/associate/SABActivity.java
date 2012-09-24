@@ -11,7 +11,6 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.Toast;
-import android.webkit.GeolocationPermissions;
 
 public class SABActivity extends Activity {
     private static final String HOME_SEARCH = "http://www.google.com";
@@ -59,11 +58,6 @@ public class SABActivity extends Activity {
         	     // The progress meter will automatically disappear when we reach 100%
         	     activity.setProgress(progress * 1000);
         	   }
-        	   
-//        	   public void onGeolocationPermissionsShowPrompt(String origin, GeolocationPermissions.Callback callback) {
-//        		    // callback.invoke(String origin, boolean allow, boolean remember);
-//        		    callback.invoke(origin, true, false);
-//        		  }
         	 });
         
     	 webview.setWebViewClient(new WebViewClient() {
