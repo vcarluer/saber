@@ -5,5 +5,7 @@
     <string name="app_name">SAB</string>
     <string name="back">Back</string>
     <string name="search">Search</string>
+    <string name="search_site">Search site</string>
+    <string name="validate_search_page">Validate search page</string>
 
 </resources>
