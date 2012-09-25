@@ -8,7 +8,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.Window;
+import android.webkit.CookieManager;
 import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
@@ -46,9 +48,25 @@ public class SABActivity extends Activity {
 			}
 		});
         
-        webview.getSettings().setJavaScriptEnabled(true);
-        webview.getSettings().setUseWideViewPort(true);
-        webview.getSettings().setBuiltInZoomControls(true);
+        webview.clearHistory();
+        
+        WebSettings settings = webview.getSettings();
+        settings.setJavaScriptEnabled(true);
+        settings.setUseWideViewPort(true);
+        settings.setBuiltInZoomControls(true);
+        settings.setAppCacheEnabled(true);
+        
+        settings.setSavePassword(false);
+        settings.setAllowFileAccess(false);
+        settings.setDatabaseEnabled(false);
+        settings.setDisplayZoomControls(false);
+        settings.setDomStorageEnabled(false);
+        settings.setGeolocationEnabled(false);
+        settings.setNavDump(false);
+        settings.setPluginsEnabled(false);
+        
+        CookieManager cookieManager = CookieManager.getInstance(); 
+        cookieManager.removeAllCookie();
         
         final Activity activity = this;
         final ProgressBar progressBar = (ProgressBar) this.findViewById(R.id.progressBar);
