@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <string name="hello">Hello World, SABActivity!</string>
-    <string name="app_name">SAB</string>
+    <string name="app_name">SABer</string>
     <string name="back">Back</string>
     <string name="search">Search</string>
     <string name="search_site">Search site</string>

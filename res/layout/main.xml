@@ -9,46 +9,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <ImageView
-        android:id="@+id/btSearch"
-        android:layout_width="42dip"
-        android:layout_height="42dip"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:contentDescription="@string/search"
-        android:src="@android:drawable/ic_menu_search" />
-
-    <ImageView
-        android:id="@+id/btBack"
-        android:layout_width="42dip"
-        android:layout_height="42dip"
-        android:layout_above="@+id/btSearch"
-        android:layout_alignParentLeft="true"
-        android:contentDescription="@string/back"
-        android:src="@android:drawable/ic_menu_revert" />
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_toRightOf="@+id/btSearch" />
-    
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="#FF000000"
-        android:visibility="gone"
-        android:layout_toRightOf="@+id/btSearch" >
+        android:visibility="gone" >
 
-        <EditText android:id="@+id/txtSearch"
-            android:hint="@string/search_site"
+        <EditText
+            android:id="@+id/txtSearch"
             android:layout_width="fill_parent"
-            
-            android:layout_height="wrap_content" android:inputType="textUri"/>
+            android:layout_height="wrap_content"
+            android:hint="@string/search_site"
+            android:inputType="textUri" />
 
         <ImageView
             android:id="@+id/btOkSearch"
@@ -58,8 +31,34 @@
             android:layout_alignParentTop="true"
             android:contentDescription="@string/validate_search_page"
             android:src="@android:drawable/ic_menu_manage" />
-
             "
     </RelativeLayout>
+
+    <Button
+        android:id="@+id/btSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:contentDescription="@string/search"
+        android:drawableLeft="@android:drawable/ic_menu_search" />
+
+    <Button
+        android:id="@+id/btBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:contentDescription="@string/back"
+        android:drawableLeft="@android:drawable/ic_menu_revert" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/btSearch"
+        android:layout_toRightOf="@+id/btBack" />
 
 </RelativeLayout>

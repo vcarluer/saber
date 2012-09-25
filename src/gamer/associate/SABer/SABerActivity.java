@@ -1,4 +1,4 @@
-package gamer.associate;
+package gamer.associate.SABer;
 
 import android.app.Activity;
 import android.opengl.Visibility;
@@ -13,12 +13,13 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-public class SABActivity extends Activity {
-    private static final String HOME_SEARCH = "http://www.google.com";
+public class SABerActivity extends Activity {
+    private static final String HOME_SEARCH = "http://www.google.com/m?source=mobileproducts&dc=gorganic";
 	private WebView webview;
 	/** Called when the activity is first created. */
     @Override
@@ -31,7 +32,7 @@ public class SABActivity extends Activity {
         
         this.webview = (WebView) this.findViewById(R.id.webViewMain);
         
-        ImageView btBack = (ImageView) this.findViewById(R.id.btBack);
+        Button btBack = (Button) this.findViewById(R.id.btBack);
         
         btBack.setOnClickListener(new OnClickListener() {
 			
@@ -40,7 +41,7 @@ public class SABActivity extends Activity {
 			}
 		});
         
-        ImageView btSearch = (ImageView) this.findViewById(R.id.btSearch);
+        Button btSearch = (Button) this.findViewById(R.id.btSearch);
         btSearch.setOnClickListener(new OnClickListener() {
 			
 			public void onClick(View v) {
@@ -49,6 +50,7 @@ public class SABActivity extends Activity {
 		});
         
         webview.clearHistory();
+        webview.clearCache(true); // really...
         
         WebSettings settings = webview.getSettings();
         settings.setJavaScriptEnabled(true);
