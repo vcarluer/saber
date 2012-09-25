@@ -11,6 +11,7 @@ import android.view.Window;
 import android.webkit.CookieManager;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
+import android.webkit.WebSettings.PluginState;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
@@ -65,7 +66,7 @@ public class SABerActivity extends Activity {
         settings.setDomStorageEnabled(false);
         settings.setGeolocationEnabled(false);
         settings.setNavDump(false);
-        settings.setPluginsEnabled(false);
+        settings.setPluginState(PluginState.OFF);
         
         CookieManager cookieManager = CookieManager.getInstance(); 
         cookieManager.removeAllCookie();
@@ -73,20 +74,7 @@ public class SABerActivity extends Activity {
         final Activity activity = this;
         final ProgressBar progressBar = (ProgressBar) this.findViewById(R.id.progressBar);
         progressBar.setMax(100);
-        webview.setWebChromeClient(new WebChromeClient() {
-        	   public void onProgressChanged(WebView view, int progress) {
-        	     // Activities and WebViews measure progress with different scales.
-        	     // The progress meter will automatically disappear when we reach 100%
-        	     activity.setProgress(progress * 100);
-        	     progressBar.setProgress(progress);
-        	     if (progressBar.getProgress() == progressBar.getMax()) {
-        	    	 progressBar.setVisibility(View.INVISIBLE);
-        	    	 progressBar.setProgress(0);
-        	     } else {
-        	    	 progressBar.setVisibility(View.VISIBLE);
-        	     }
-        	   }
-        	 });
+        webview.setWebChromeClient(new SabClient(this));
         
     	 webview.setWebViewClient(new WebViewClient() {
     	   public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
