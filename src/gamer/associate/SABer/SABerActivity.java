@@ -42,12 +42,12 @@ public class SABerActivity extends Activity {
         settings.setUseWideViewPort(true);
         settings.setBuiltInZoomControls(true);
         settings.setAppCacheEnabled(true);
+        settings.setDomStorageEnabled(true); // No database path so no persistent
         // Disabled
         settings.setSavePassword(false);
         settings.setAllowFileAccess(false);
         settings.setDatabaseEnabled(false);
-        settings.setDisplayZoomControls(false);
-        settings.setDomStorageEnabled(false);
+        settings.setDisplayZoomControls(false);        
         settings.setGeolocationEnabled(false);
         settings.setNavDump(false);
         settings.setPluginState(PluginState.OFF);

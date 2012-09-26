@@ -6,7 +6,7 @@ Because browsing internet must be simple and fast.
 No Url adress bar (D'ho!)
 No tabs
 No bookmarks
-No download or storage access
+No download or system storage access
 No plugin
 No localisation
 No forward navigation button
@@ -14,6 +14,7 @@ No parameters
 History limited to session
 Cookies limited to session
 Cache limited to session
+DOM storage limited to session
 
 * Features:
 Javascript
@@ -38,7 +39,7 @@ No need of parameters, just browse
 
 * Why anonymous?
 Because by default browsing must be anonymous
-It is as much anonymous than incognito mode in chrome, so in fact it is not really.
+It is as much anonymous than incognito mode in Chrome, so in fact it is not really.
 
 * An enhancement, a bug, a new feature?
 Send me an email for bug or standard html badly handled.
