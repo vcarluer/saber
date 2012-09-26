@@ -11,8 +11,11 @@ No plugin
 No localisation  
 No forward navigation button  
 No parameters  
+  
+* Limited features:  
 History limited to session  
 Cookies limited to session  
+Forms data limited to session  
 Cache limited to session  
 DOM storage limited to session  
   
@@ -38,7 +41,8 @@ No need of forward button, click again on that hyperlink if you are not a red fi
 No need of parameters, just browse  
   
 * Why anonymous?  
-Because by default browsing must be anonymous  
+Because by default browsing must be anonymous.  
+And because there are no parameters to go another way than the default one.  
 It is as much anonymous than incognito mode in Chrome, so in fact it is not really.  
   
 * An enhancement, a bug, a new feature?  
