@@ -20,7 +20,8 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 public class SABerActivity extends Activity {
-    private static final String HOME_SEARCH = "http://www.google.com/m?source=mobileproducts&dc=gorganic";
+    private static final String D_OH = "D'oh! ";
+	private static final String HOME_SEARCH = "http://www.google.com/m?source=mobileproducts&dc=gorganic";
 	private WebView webview;
 	/** Called when the activity is first created. */
     @Override
@@ -79,7 +80,7 @@ public class SABerActivity extends Activity {
         
     	 webview.setWebViewClient(new WebViewClient() {
     	   public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-    	     Toast.makeText(activity, "d'oh! " + description, Toast.LENGTH_SHORT).show();
+    	     Toast.makeText(activity, D_OH + description, Toast.LENGTH_SHORT).show();
     	   }
     	 });
 
