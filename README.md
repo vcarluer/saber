@@ -36,7 +36,7 @@ No need of tabs, you have maximum only two eyes
 No need of bookmarks, internet is alive, search again with google  
 No need of storage access, services are online now  
 No need of plugin, Html5 in da place  
-No need of localisation, you can enter it in exchange of some privacy and a zero parameter browser  
+No need of localisation, you can enter it in exchange of some privacy, performance and a zero parameter browser  
 No need of forward button, click again on that hyperlink if you are not a red fish  
 No need of parameters, just browse  
   
