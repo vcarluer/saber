@@ -32,12 +32,15 @@ public class SabClient extends WebChromeClient {
             mCustomViewCallback = callback;
             mContentView = (RelativeLayout) webactivity.findViewById(R.id.main);
             if (view instanceof FrameLayout) { 
+            	// Add the custom view to the content view
 		        mContentView.addView(mCustomViewContainer, new FrameLayout.LayoutParams( 
 		                                ViewGroup.LayoutParams.FILL_PARENT, 
 		                                ViewGroup.LayoutParams.FILL_PARENT, 
 		                                Gravity.CENTER)); 
-        		mContentView.setVisibility(View.VISIBLE); 
-        		WebView webview = (WebView) mContentView.findViewById(R.id.webViewMain);
+        		
+		        // Switch visibility
+		        mContentView.setVisibility(View.VISIBLE);         		
+        		WebView webview = (WebView) mContentView.findViewById(R.id.webViewMain);        		
         		webview.setVisibility(View.GONE);
 	        }
         }
@@ -53,7 +56,7 @@ public class SabClient extends WebChromeClient {
         mCustomViewContainer = null;
         mCustomViewCallback.onCustomViewHidden();
         // Show the content view.
-        WebView webview = (WebView) mContentView.findViewById(R.id.webViewMain);
+        WebView webview = (WebView) mContentView.findViewById(R.id.webViewMain);        
         webview.setVisibility(View.VISIBLE);
     }
     

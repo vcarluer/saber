@@ -28,37 +28,20 @@ public class SABerActivity extends Activity {
         super.onCreate(savedInstanceState);
       //Remove title bar
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-
         setContentView(R.layout.main);
         
+        // Lets groove
         this.webview = (WebView) this.findViewById(R.id.webViewMain);
+        this.clearAll();
         
-        Button btBack = (Button) this.findViewById(R.id.btBack);
-        
-        btBack.setOnClickListener(new OnClickListener() {
-			
-			public void onClick(View v) {
-				goBack();
-			}
-		});
-        
-        Button btSearch = (Button) this.findViewById(R.id.btSearch);
-        btSearch.setOnClickListener(new OnClickListener() {
-			
-			public void onClick(View v) {
-				webview.loadUrl(HOME_SEARCH);
-			}
-		});
-        
-        webview.clearHistory();
-        webview.clearCache(true); // really...
-        
+        // Web sttings        
         WebSettings settings = webview.getSettings();
+        // Enabled
         settings.setJavaScriptEnabled(true);
         settings.setUseWideViewPort(true);
         settings.setBuiltInZoomControls(true);
         settings.setAppCacheEnabled(true);
-        
+        // Disabled
         settings.setSavePassword(false);
         settings.setAllowFileAccess(false);
         settings.setDatabaseEnabled(false);
@@ -68,12 +51,30 @@ public class SABerActivity extends Activity {
         settings.setNavDump(false);
         settings.setPluginState(PluginState.OFF);
         
-        CookieManager cookieManager = CookieManager.getInstance(); 
-        cookieManager.removeAllCookie();
+        // Back
+        Button btBack = (Button) this.findViewById(R.id.btBack);        
+        btBack.setOnClickListener(new OnClickListener() {
+			
+			public void onClick(View v) {
+				goBack();
+			}
+		});
         
+        // Search
+        Button btSearch = (Button) this.findViewById(R.id.btSearch);
+        btSearch.setOnClickListener(new OnClickListener() {
+			
+			public void onClick(View v) {
+				webview.loadUrl(HOME_SEARCH);
+			}
+		});
+        
+        // Progress bar
         final Activity activity = this;
         final ProgressBar progressBar = (ProgressBar) this.findViewById(R.id.progressBar);
         progressBar.setMax(100);
+        
+        // Web client
         webview.setWebChromeClient(new SabClient(this));
         
     	 webview.setWebViewClient(new WebViewClient() {
@@ -82,8 +83,14 @@ public class SABerActivity extends Activity {
     	   }
     	 });
 
+    	 // Go!
     	 webview.loadUrl(HOME_SEARCH);
     }
+	@Override
+	protected void onDestroy() {
+		this.clearAll();
+		super.onDestroy();
+	}
 	@Override
 	public void onBackPressed() {
 		goBack();
@@ -93,5 +100,17 @@ public class SABerActivity extends Activity {
     	if (webview.canGoBack()) {
 			webview.goBack();
 		}
+    }
+    
+    private void clearAll() {
+    	if (webview != null) {
+    		webview.clearHistory();
+            webview.clearCache(true); // really...
+    	}
+    	
+        CookieManager cookieManager = CookieManager.getInstance();
+        if (cookieManager != null) {
+        	cookieManager.removeAllCookie();
+        }        
     }
 }

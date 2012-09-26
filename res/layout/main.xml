@@ -42,6 +42,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:contentDescription="@string/search"
+        android:background="@drawable/roundedcorner"
         android:drawableLeft="@android:drawable/ic_menu_search" />
 
     <Button
@@ -51,6 +52,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:contentDescription="@string/back"
+        android:background="@drawable/roundedcorner"
         android:drawableLeft="@android:drawable/ic_menu_revert" />
 
     <ProgressBar
