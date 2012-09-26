@@ -1,5 +1,6 @@
-package gamer.associate.SABer;
+package gamers.associate.SABer;
 
+import gamers.associate.SABer.R;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,10 +16,6 @@ public class SabClient extends WebChromeClient {
     private RelativeLayout mContentView;
     private FrameLayout mCustomViewContainer;
     private WebChromeClient.CustomViewCallback mCustomViewCallback;
-
-    static final FrameLayout.LayoutParams COVER_SCREEN_GRAVITY_CENTER = new FrameLayout.LayoutParams(
-            ViewGroup.LayoutParams.FILL_PARENT,
-            ViewGroup.LayoutParams.FILL_PARENT, Gravity.CENTER);
 
     public SabClient(SABerActivity wv) {
         super();
@@ -67,7 +64,7 @@ public class SabClient extends WebChromeClient {
     	ProgressBar progressBar = (ProgressBar) webactivity.findViewById(R.id.progressBar);
 	     progressBar.setProgress(progress);
 	     if (progressBar.getProgress() == progressBar.getMax()) {
-	    	 progressBar.setVisibility(View.INVISIBLE);
+	    	 progressBar.setVisibility(View.GONE);
 	    	 progressBar.setProgress(0);
 	     } else {
 	    	 progressBar.setVisibility(View.VISIBLE);

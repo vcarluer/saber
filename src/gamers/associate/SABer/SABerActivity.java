@@ -1,5 +1,6 @@
-package gamer.associate.SABer;
+package gamers.associate.SABer;
 
+import gamers.associate.SABer.R;
 import android.app.Activity;
 import android.net.http.SslError;
 import android.os.Bundle;
