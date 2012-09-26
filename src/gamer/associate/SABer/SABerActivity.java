@@ -20,7 +20,8 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 public class SABerActivity extends Activity {
-    private static final String D_OH = "D'oh! ";
+    private static final String UA_SABER = " SABer/1.0";
+	private static final String D_OH = "D'oh! ";
 	private static final String HOME_SEARCH = "http://www.google.com/m?source=mobileproducts&dc=gorganic";
 	private WebView webview;
 	/** Called when the activity is first created. */
@@ -33,10 +34,13 @@ public class SABerActivity extends Activity {
         
         // Lets groove
         this.webview = (WebView) this.findViewById(R.id.webViewMain);
-        this.clearAll();
+        this.clearAll();        
         
         // Web sttings        
         WebSettings settings = webview.getSettings();
+        // User Agent
+        String ua = settings.getUserAgentString() + UA_SABER;        
+        settings.setUserAgentString(ua);
         // Enabled
         settings.setJavaScriptEnabled(true);
         settings.setUseWideViewPort(true);
