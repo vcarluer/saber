@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.widget.FrameLayout;
+import android.widget.MediaController.MediaPlayerControl;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
@@ -16,30 +17,43 @@ public class SabClient extends WebChromeClient {
     private RelativeLayout mContentView;
     private FrameLayout mCustomViewContainer;
     private WebChromeClient.CustomViewCallback mCustomViewCallback;
-
+    private MediaPlayerControl mediaControl;
+    
     public SabClient(SABerActivity wv) {
         super();
         this.webactivity = wv;
     }
-
+    
+    
     public void onShowCustomView(View view, CustomViewCallback callback) {
         // super.onShowCustomView(view, callback);
         if (view instanceof FrameLayout) {
             mCustomViewContainer = (FrameLayout) view;
+            if (mCustomViewContainer.getChildCount() > 0) {
+            	View firstChild = mCustomViewContainer.getChildAt(0);
+                //if (firstChild instanceof MediaPlayerControl) {
+//                	this.mediaControl = (MediaPlayerControl)firstChild;
+                //}
+            }
+            
             mCustomViewCallback = callback;
             mContentView = (RelativeLayout) webactivity.findViewById(R.id.main);
-            if (view instanceof FrameLayout) { 
-            	// Add the custom view to the content view
-		        mContentView.addView(mCustomViewContainer, new FrameLayout.LayoutParams( 
-		                                ViewGroup.LayoutParams.FILL_PARENT, 
-		                                ViewGroup.LayoutParams.FILL_PARENT, 
-		                                Gravity.CENTER)); 
-        		
-		        // Switch visibility
-		        mContentView.setVisibility(View.VISIBLE);         		
-        		webactivity.hideWebControls();
-	        }
+        	// Add the custom view to the content view
+	        mContentView.addView(mCustomViewContainer, new FrameLayout.LayoutParams( 
+	                                ViewGroup.LayoutParams.FILL_PARENT, 
+	                                ViewGroup.LayoutParams.FILL_PARENT, 
+	                                Gravity.CENTER)); 
+    		
+	        // Switch visibility
+	        mContentView.setVisibility(View.VISIBLE);         		
+    		webactivity.hideWebControls();
         }
+    }
+    
+    public void stopCustomView() {
+    	if (this.mediaControl != null) {
+    		this.mediaControl.seekTo(this.mediaControl.getDuration());
+    	}
     }
 
     public void onHideCustomView() {
@@ -68,4 +82,8 @@ public class SabClient extends WebChromeClient {
 	    	 progressBar.setVisibility(View.VISIBLE);
 	     }
 	   }
+    
+    public boolean isCustomViewPlaying() {
+    	return this.mCustomViewContainer != null;
+    }
 }
