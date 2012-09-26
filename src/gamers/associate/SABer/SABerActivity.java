@@ -6,6 +6,7 @@ import android.net.http.SslError;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.view.Window;
 import android.webkit.CookieManager;
 import android.webkit.DownloadListener;
@@ -20,7 +21,8 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 public class SABerActivity extends Activity {
-    private static final String NO_DOWNLOAD = " No download feature available in SABer.";
+    private static final String NO_TABS = "No tab in SABer to preserve your brain.";
+	private static final String NO_DOWNLOAD = "No download feature available in SABer.";
 	private static final String UA_SABER = " SABer/1.0";
 	private static final String D_OH = "D'oh! ";
 	private static final String HOME_SEARCH = "http://www.google.com/m?source=mobileproducts&dc=gorganic";
@@ -63,6 +65,14 @@ public class SABerActivity extends Activity {
 			public void onDownloadStart(String url, String userAgent,
 					String contentDisposition, String mimetype, long contentLength) {
 				Toast.makeText(activity, D_OH + NO_DOWNLOAD, Toast.LENGTH_SHORT).show();
+			}
+		});
+        
+        this.webview.setOnLongClickListener(new OnLongClickListener() {
+			
+			public boolean onLongClick(View v) {
+				Toast.makeText(activity, D_OH + NO_TABS, Toast.LENGTH_SHORT).show();
+				return true;
 			}
 		});
                 
