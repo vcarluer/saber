@@ -37,8 +37,7 @@ public class SabClient extends WebChromeClient {
         		
 		        // Switch visibility
 		        mContentView.setVisibility(View.VISIBLE);         		
-        		WebView webview = (WebView) mContentView.findViewById(R.id.webViewMain);        		
-        		webview.setVisibility(View.GONE);
+        		webactivity.hideWebControls();
 	        }
         }
     }
@@ -53,8 +52,7 @@ public class SabClient extends WebChromeClient {
         mCustomViewContainer = null;
         mCustomViewCallback.onCustomViewHidden();
         // Show the content view.
-        WebView webview = (WebView) mContentView.findViewById(R.id.webViewMain);        
-        webview.setVisibility(View.VISIBLE);
+        webactivity.showWebControls();
     }
     
     public void onProgressChanged(WebView view, int progress) {

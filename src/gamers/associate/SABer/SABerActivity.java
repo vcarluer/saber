@@ -29,6 +29,9 @@ public class SABerActivity extends Activity {
 	private static final String D_OH = "D'oh! ";
 	private static final String HOME_SEARCH = "http://www.google.com/m?source=mobileproducts&dc=gorganic";
 	private WebView webview;
+	private Button btBack;
+	private Button btSearch;
+	private ProgressBar progressBar;
 	/** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -79,8 +82,8 @@ public class SABerActivity extends Activity {
 		});
                 
         // Back
-        Button btBack = (Button) this.findViewById(R.id.btBack);        
-        btBack.setOnClickListener(new OnClickListener() {
+        this.btBack = (Button) this.findViewById(R.id.btBack);        
+        this.btBack.setOnClickListener(new OnClickListener() {
 			
 			public void onClick(View v) {
 				goBack();
@@ -88,8 +91,8 @@ public class SABerActivity extends Activity {
 		});
         
         // Search
-        Button btSearch = (Button) this.findViewById(R.id.btSearch);
-        btSearch.setOnClickListener(new OnClickListener() {
+        this.btSearch = (Button) this.findViewById(R.id.btSearch);
+        this.btSearch.setOnClickListener(new OnClickListener() {
 			
 			public void onClick(View v) {
 				webview.loadUrl(HOME_SEARCH);
@@ -97,7 +100,7 @@ public class SABerActivity extends Activity {
 		});
         
         // Progress bar        
-        final ProgressBar progressBar = (ProgressBar) this.findViewById(R.id.progressBar);
+        progressBar = (ProgressBar) this.findViewById(R.id.progressBar);
         progressBar.setMax(100);
         
         // Web client
@@ -115,14 +118,17 @@ public class SABerActivity extends Activity {
 			}
     	 });
     	 
+    	 // Url
     	 String url = HOME_SEARCH;
     	 Intent intent = getIntent();
     	 if (intent != null && Intent.ACTION_VIEW.equals(intent.getAction())) {
     		 Uri uri = intent.getData();
     		 url = uri.toString();
     	 }
+    	 
     	 // Go!
-    	 webview.loadUrl(url);
+    	 this.showWebControls();
+    	 webview.loadUrl(url);    	 
     }
 	@Override
 	protected void onDestroy() {
@@ -156,5 +162,31 @@ public class SABerActivity extends Activity {
         if (storage != null) {
         	storage.deleteAllData();
         }
+    }
+    
+    public void showWebControls() {
+    	this.setControlsVisibility(View.VISIBLE);
+    }
+    
+    public void hideWebControls() {
+    	this.setControlsVisibility(View.GONE);
+    }
+    
+    private void setControlsVisibility(int visible) {
+    	if (this.webview != null) {
+    		this.webview.setVisibility(visible);
+    	}
+    	
+    	if (this.btBack != null) {
+    		this.btBack.setVisibility(visible);
+    	}
+    	
+    	if (this.btSearch != null) {
+    		this.btSearch.setVisibility(visible);
+    	}
+    	
+    	if (this.progressBar != null) {
+    		this.progressBar.setVisibility(visible);
+    	}
     }
 }
