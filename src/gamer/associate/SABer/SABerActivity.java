@@ -1,6 +1,7 @@
 package gamer.associate.SABer;
 
 import android.app.Activity;
+import android.net.http.SslError;
 import android.opengl.Visibility;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -9,6 +10,7 @@ import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.Window;
 import android.webkit.CookieManager;
+import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebSettings.PluginState;
@@ -86,6 +88,12 @@ public class SABerActivity extends Activity {
     	   public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
     	     Toast.makeText(activity, D_OH + description, Toast.LENGTH_SHORT).show();
     	   }
+
+			@Override
+			public void onReceivedSslError(WebView view, SslErrorHandler handler,
+					SslError error) {
+				handler.proceed();
+			}
     	 });
 
     	 // Go!
