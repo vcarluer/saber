@@ -14,6 +14,7 @@ import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebSettings.PluginState;
+import android.webkit.WebStorage;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
@@ -118,12 +119,18 @@ public class SABerActivity extends Activity {
     private void clearAll() {
     	if (webview != null) {
     		webview.clearHistory();
+    		webview.clearFormData();
             webview.clearCache(true); // really...
     	}
     	
         CookieManager cookieManager = CookieManager.getInstance();
         if (cookieManager != null) {
         	cookieManager.removeAllCookie();
-        }        
+        }
+        
+        WebStorage storage = WebStorage.getInstance();
+        if (storage != null) {
+        	storage.deleteAllData();
+        }
     }
 }

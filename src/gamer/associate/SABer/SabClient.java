@@ -10,7 +10,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
 public class SabClient extends WebChromeClient {
-    private SABerActivity webactivity; // Use Your WebView instance instead
+    private SABerActivity webactivity;
 
     private RelativeLayout mContentView;
     private FrameLayout mCustomViewContainer;
