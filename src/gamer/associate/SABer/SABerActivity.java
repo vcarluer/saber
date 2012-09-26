@@ -2,28 +2,25 @@ package gamer.associate.SABer;
 
 import android.app.Activity;
 import android.net.http.SslError;
-import android.opengl.Visibility;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnTouchListener;
 import android.view.Window;
 import android.webkit.CookieManager;
+import android.webkit.DownloadListener;
 import android.webkit.SslErrorHandler;
-import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebSettings.PluginState;
 import android.webkit.WebStorage;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 public class SABerActivity extends Activity {
-    private static final String UA_SABER = " SABer/1.0";
+    private static final String NO_DOWNLOAD = " No download feature available in SABer.";
+	private static final String UA_SABER = " SABer/1.0";
 	private static final String D_OH = "D'oh! ";
 	private static final String HOME_SEARCH = "http://www.google.com/m?source=mobileproducts&dc=gorganic";
 	private WebView webview;
@@ -37,6 +34,7 @@ public class SABerActivity extends Activity {
         
         // Lets groove
         this.webview = (WebView) this.findViewById(R.id.webViewMain);
+        final Activity activity = this;
         this.clearAll();        
         
         // Web sttings        
@@ -58,7 +56,15 @@ public class SABerActivity extends Activity {
         settings.setGeolocationEnabled(false);
         settings.setNavDump(false);
         settings.setPluginState(PluginState.OFF);
-        
+        // Downloads
+        this.webview.setDownloadListener(new DownloadListener() {
+			
+			public void onDownloadStart(String url, String userAgent,
+					String contentDisposition, String mimetype, long contentLength) {
+				Toast.makeText(activity, D_OH + NO_DOWNLOAD, Toast.LENGTH_SHORT).show();
+			}
+		});
+                
         // Back
         Button btBack = (Button) this.findViewById(R.id.btBack);        
         btBack.setOnClickListener(new OnClickListener() {
@@ -77,8 +83,7 @@ public class SABerActivity extends Activity {
 			}
 		});
         
-        // Progress bar
-        final Activity activity = this;
+        // Progress bar        
         final ProgressBar progressBar = (ProgressBar) this.findViewById(R.id.progressBar);
         progressBar.setMax(100);
         
