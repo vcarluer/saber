@@ -2,6 +2,8 @@ package gamers.associate.SABer;
 
 import gamers.associate.SABer.R;
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.net.http.SslError;
 import android.os.Bundle;
 import android.view.View;
@@ -112,9 +114,15 @@ public class SABerActivity extends Activity {
 				handler.proceed();
 			}
     	 });
-
+    	 
+    	 String url = HOME_SEARCH;
+    	 Intent intent = getIntent();
+    	 if (intent != null && Intent.ACTION_VIEW.equals(intent.getAction())) {
+    		 Uri uri = intent.getData();
+    		 url = uri.toString();
+    	 }
     	 // Go!
-    	 webview.loadUrl(HOME_SEARCH);
+    	 webview.loadUrl(url);
     }
 	@Override
 	protected void onDestroy() {
