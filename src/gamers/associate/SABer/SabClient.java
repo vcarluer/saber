@@ -1,13 +1,11 @@
 package gamers.associate.SABer;
 
-import gamers.associate.SABer.R;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.widget.FrameLayout;
-import android.widget.MediaController.MediaPlayerControl;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
@@ -27,7 +25,8 @@ public class SabClient extends WebChromeClient {
     public void onShowCustomView(View view, CustomViewCallback callback) {
         // super.onShowCustomView(view, callback);
         if (view instanceof FrameLayout) {
-            mCustomViewContainer = (FrameLayout) view;
+        	webactivity.hideWebControls();
+        	mCustomViewContainer = (FrameLayout) view;
             
             mCustomViewCallback = callback;
             mContentView = (RelativeLayout) webactivity.findViewById(R.id.main);
@@ -35,32 +34,39 @@ public class SabClient extends WebChromeClient {
 	        mContentView.addView(mCustomViewContainer, new FrameLayout.LayoutParams( 
 	                                ViewGroup.LayoutParams.FILL_PARENT, 
 	                                ViewGroup.LayoutParams.FILL_PARENT, 
-	                                Gravity.CENTER)); 
-    		
-	        // Switch visibility
-	        mContentView.setVisibility(View.VISIBLE);         		
-    		webactivity.hideWebControls();
+	                                Gravity.CENTER));
         }
     }
     
-    public void stopCustomView() {
+    
+    
+    @Override
+	public View getVideoLoadingProgressView() {
+		return new ProgressBar(webactivity, null, android.R.attr.progressBarStyleLarge);
+	}
+
+	public void stopCustomView() {
     	this.onHideCustomView();
     }
 
     public void onHideCustomView() {
-        if (mCustomViewContainer == null)
-            return;
-        // Hide the custom view.
-//        mCustomViewContainer.setVisibility(View.GONE);
-        // Remove the custom view from its container.
-        mContentView.removeView(mCustomViewContainer);
-        mCustomViewContainer = null;
-        mCustomViewCallback.onCustomViewHidden();
+    	// Remove the custom view from its container.
+    	if (mCustomViewContainer != null) {
+        	mContentView.removeView(mCustomViewContainer);
+            mCustomViewContainer = null;
+        }
+        
+        if (mCustomViewCallback != null) {
+        	mCustomViewCallback.onCustomViewHidden();
+        	mCustomViewCallback = null;
+        }
+        
         // Show the content view.
         webactivity.showWebControls();
     }
-    
-    public void onProgressChanged(WebView view, int progress) {
+
+
+	public void onProgressChanged(WebView view, int progress) {
 	     // Activities and WebViews measure progress with different scales.
 	     // The progress meter will automatically disappear when we reach 100%
     	webactivity.setProgress(progress * 100);

@@ -1,6 +1,5 @@
 package gamers.associate.SABer;
 
-import gamers.associate.SABer.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
@@ -13,7 +12,6 @@ import android.view.Window;
 import android.webkit.CookieManager;
 import android.webkit.DownloadListener;
 import android.webkit.SslErrorHandler;
-import android.webkit.WebChromeClient.CustomViewCallback;
 import android.webkit.WebSettings;
 import android.webkit.WebSettings.PluginState;
 import android.webkit.WebStorage;
@@ -22,11 +20,10 @@ import android.webkit.WebView.HitTestResult;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 public class SABerActivity extends Activity {
-    private static final String END_VIDEO_FULLSCREEN = "Go to end of video to close full screen.";
+//    private static final String END_VIDEO_FULLSCREEN = "Go to end of video to close full screen.";
 	private static final String NO_TABS = "No tab in SABer to preserve your brain.";
 	private static final String NO_DOWNLOAD = "No download feature available in SABer.";
 	private static final String UA_SABER = " SABer/1.0";
