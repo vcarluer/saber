@@ -147,20 +147,25 @@ public class SABerActivity extends Activity {
 		super.onDestroy();
 	}
 	@Override
-	public void onBackPressed() {
-		goBack();
+	public void onBackPressed() {		
+		if (!goBack()) {
+			super.onBackPressed();
+		}
 	}
     
-    private void goBack() {
+    private boolean goBack() {
     	if (this.sabClient != null && this.sabClient.isCustomViewPlaying()) {
     		 this.sabClient.stopCustomView();
 //    		Toast.makeText(this, D_OH + END_VIDEO_FULLSCREEN, Toast.LENGTH_SHORT).show();
-    		return;
+    		return true;
     	}
     	
 		if (webview.canGoBack()) {
 			webview.goBack();
+			return true;
    		}
+		
+		return false;
     }
     
     private void clearAll() {
