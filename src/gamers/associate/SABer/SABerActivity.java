@@ -26,7 +26,8 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 public class SABerActivity extends Activity {
-    private static final String NO_TABS = "No tab in SABer to preserve your brain.";
+    private static final String END_VIDEO_FULLSCREEN = "Go to end of video to close full screen.";
+	private static final String NO_TABS = "No tab in SABer to preserve your brain.";
 	private static final String NO_DOWNLOAD = "No download feature available in SABer.";
 	private static final String UA_SABER = " SABer/1.0";
 	private static final String D_OH = "D'oh! ";
@@ -35,8 +36,6 @@ public class SABerActivity extends Activity {
 	private Button btBack;
 	private Button btSearch;
 	private ProgressBar progressBar;
-	
-	private RelativeLayout mContentView;
 	
 	private SabClient sabClient;
 	
@@ -47,9 +46,6 @@ public class SABerActivity extends Activity {
       //Remove title bar
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.main);
-        
-        // main container
-        this.mContentView = (RelativeLayout) this.findViewById(R.id.main);
         
         // Lets groove
         this.webview = (WebView) this.findViewById(R.id.webViewMain);
@@ -160,8 +156,9 @@ public class SABerActivity extends Activity {
     
     private void goBack() {
     	if (this.sabClient != null && this.sabClient.isCustomViewPlaying()) {
-//    		this.sabClient.stopCustomView();
-//    		return;
+    		 this.sabClient.stopCustomView();
+//    		Toast.makeText(this, D_OH + END_VIDEO_FULLSCREEN, Toast.LENGTH_SHORT).show();
+    		return;
     	}
     	
 		if (webview.canGoBack()) {
@@ -215,7 +212,7 @@ public class SABerActivity extends Activity {
 	@Override
 	protected void onPause() {
 		if (this.sabClient != null && this.sabClient.isCustomViewPlaying()) {
-//			this.sabClient.stopCustomView();
+			this.sabClient.stopCustomView();
 		}
 		
 		super.onPause();
