@@ -23,7 +23,9 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 public class SABerActivity extends Activity {
-//    private static final String END_VIDEO_FULLSCREEN = "Go to end of video to close full screen.";
+	private static final String WEBVIEW_CACHE_DB = "webviewCache.db";
+	private static final String WEBVIEW_DB = "webview.db";
+	//    private static final String END_VIDEO_FULLSCREEN = "Go to end of video to close full screen.";
 	private static final String NO_TABS = "No tab in SABer to preserve your brain.";
 	private static final String NO_DOWNLOAD = "No download feature available in SABer.";
 	private static final String UA_SABER = " SABer/1.0";
@@ -40,7 +42,15 @@ public class SABerActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-      //Remove title bar
+        
+        // For form suggest entries removal (formdata clear is not enough). example: user name in gmail login page
+        // Not really confident about that (but works) so put in a try catch block
+        try {
+        	this.deleteDatabase(WEBVIEW_DB);
+            this.deleteDatabase(WEBVIEW_CACHE_DB);
+        } catch(Exception ex) {}
+                
+        // Remove title bar
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.main);
         
@@ -172,7 +182,7 @@ public class SABerActivity extends Activity {
     	if (webview != null) {
     		webview.clearHistory();
     		webview.clearFormData();
-            webview.clearCache(true); // really...
+            webview.clearCache(true); // really...            
     	}
     	
         CookieManager cookieManager = CookieManager.getInstance();
