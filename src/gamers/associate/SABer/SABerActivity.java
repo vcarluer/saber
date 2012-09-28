@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.net.http.SslError;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
@@ -23,6 +24,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 public class SABerActivity extends Activity {
+	private static final String NO_PARAMETERS = "No parameters in SABer.";
 	private static final String WEBVIEW_CACHE_DB = "webviewCache.db";
 	private static final String WEBVIEW_DB = "webview.db";
 	//    private static final String END_VIDEO_FULLSCREEN = "Go to end of video to close full screen.";
@@ -229,6 +231,13 @@ public class SABerActivity extends Activity {
 		
 		super.onPause();
 	}
-    
-    
+	@Override
+	public boolean onKeyUp(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_MENU) {
+			Toast.makeText(this, D_OH + NO_PARAMETERS, Toast.LENGTH_SHORT).show();
+			return true;
+		}
+		
+		return super.onKeyUp(keyCode, event);
+	}
 }
