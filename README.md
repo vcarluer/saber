@@ -48,3 +48,5 @@ It is as much anonymous than incognito mode in Chrome, so in fact it is not real
 * An enhancement, a bug, a new feature?  
 Send me an email for bug or standard html badly handled.  
 No new features in this product.  
+
+This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/3.0/ or send a letter to Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
