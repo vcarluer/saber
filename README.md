@@ -1,6 +1,7 @@
 SABer  
 Simplest Anonymous Browser  
 Because browsing internet must be simple and fast.  
+https://play.google.com/store/apps/details?id=gamers.associate.SABer  
   
 * No features:  
 No Url adress bar (D'ho!)  
